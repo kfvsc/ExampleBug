@@ -3,6 +3,7 @@ package com.example.examplebug.Transform;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class TransformedViewGroup extends ViewGroup {
@@ -25,6 +26,11 @@ public abstract class TransformedViewGroup extends ViewGroup {
 
     public void setMatrix(Matrix matrix) {
         this.matrix = matrix;
+
+        if (getParent() instanceof View) {
+            ((View) getParent()).invalidate();
+        }
+
         invalidate();
     }
 }
